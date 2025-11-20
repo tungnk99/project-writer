@@ -17,8 +17,8 @@ export const FileUploadStep = ({ files, setFiles }: Props) => {
       
       if (files.length + selectedFiles.length > 10) {
         toast({
-          title: "Quá nhiều file",
-          description: "Bạn chỉ có thể tải lên tối đa 10 file",
+          title: "Too many files",
+          description: "You can upload up to 10 files maximum",
           variant: "destructive",
         });
         return;
@@ -27,8 +27,8 @@ export const FileUploadStep = ({ files, setFiles }: Props) => {
       const oversizedFiles = selectedFiles.filter(file => file.size > 20 * 1024 * 1024);
       if (oversizedFiles.length > 0) {
         toast({
-          title: "File quá lớn",
-          description: "Mỗi file không được vượt quá 20MB",
+          title: "File too large",
+          description: "Each file must not exceed 20MB",
           variant: "destructive",
         });
         return;
@@ -36,8 +36,8 @@ export const FileUploadStep = ({ files, setFiles }: Props) => {
 
       setFiles([...files, ...selectedFiles]);
       toast({
-        title: "Thành công",
-        description: `Đã thêm ${selectedFiles.length} file`,
+        title: "Success",
+        description: `Added ${selectedFiles.length} file(s)`,
       });
     },
     [files, setFiles, toast]
@@ -46,53 +46,39 @@ export const FileUploadStep = ({ files, setFiles }: Props) => {
   const removeFile = (index: number) => {
     setFiles(files.filter((_, i) => i !== index));
     toast({
-      title: "Đã xóa file",
-      description: "File đã được xóa khỏi danh sách",
+      title: "File removed",
+      description: "File has been removed from the list",
     });
   };
 
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-foreground mb-2">Tải file dự án</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-2">Upload Project Files</h2>
         <p className="text-muted-foreground">
-          Thêm các tài liệu liên quan đến dự án (tối đa 10 file, mỗi file không quá 20MB)
+          Add documents related to your project (max 10 files, 20MB each)
         </p>
       </div>
 
       <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary transition-colors">
-        <input
-          type="file"
-          id="file-upload"
-          multiple
-          onChange={handleFileChange}
-          className="hidden"
-          accept=".pdf,.doc,.docx,.txt,.md,.xlsx,.xls"
-        />
-        <label
-          htmlFor="file-upload"
-          className="cursor-pointer flex flex-col items-center gap-4"
-        >
-          <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center">
-            <Upload className="w-8 h-8 text-primary" />
-          </div>
+...
           <div>
             <p className="text-lg font-semibold text-foreground mb-1">
-              Nhấp để chọn file hoặc kéo thả vào đây
+              Click to select files or drag and drop here
             </p>
             <p className="text-sm text-muted-foreground">
               PDF, DOC, DOCX, TXT, MD, XLSX, XLS
             </p>
           </div>
           <Button type="button" variant="outline" className="mt-2">
-            Chọn file
+            Select Files
           </Button>
         </label>
       </div>
 
       {files.length > 0 && (
         <div className="space-y-3">
-          <h3 className="font-semibold text-foreground">File đã chọn ({files.length}/10)</h3>
+          <h3 className="font-semibold text-foreground">Selected Files ({files.length}/10)</h3>
           <div className="space-y-2">
             {files.map((file, index) => (
               <div

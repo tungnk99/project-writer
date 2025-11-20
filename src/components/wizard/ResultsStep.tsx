@@ -15,8 +15,8 @@ export const ResultsStep = ({ generatedDoc, isGenerating, onReset }: Props) => {
 
   const handleDownload = (format: string) => {
     toast({
-      title: "Đang tải xuống...",
-      description: `Tải xuống tài liệu dạng ${format.toUpperCase()}`,
+      title: "Downloading...",
+      description: `Downloading document as ${format.toUpperCase()}`,
     });
 
     // Create blob and download
@@ -31,8 +31,8 @@ export const ResultsStep = ({ generatedDoc, isGenerating, onReset }: Props) => {
     URL.revokeObjectURL(url);
 
     toast({
-      title: "Thành công!",
-      description: `File ${format.toUpperCase()} đã được tải xuống`,
+      title: "Success!",
+      description: `${format.toUpperCase()} file downloaded successfully`,
     });
   };
 
@@ -44,8 +44,8 @@ export const ResultsStep = ({ generatedDoc, isGenerating, onReset }: Props) => {
           <div className="w-20 h-20 border-4 border-primary border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
         </div>
         <div className="text-center space-y-2">
-          <h3 className="text-xl font-semibold text-foreground">Đang tạo tài liệu...</h3>
-          <p className="text-muted-foreground">AI đang phân tích và tạo tài liệu cho bạn</p>
+          <h3 className="text-xl font-semibold text-foreground">Generating document...</h3>
+          <p className="text-muted-foreground">AI is analyzing and creating your document</p>
         </div>
       </div>
     );
@@ -59,16 +59,16 @@ export const ResultsStep = ({ generatedDoc, isGenerating, onReset }: Props) => {
             <CheckCircle className="w-10 h-10 text-success" />
           </div>
         </div>
-        <h2 className="text-2xl font-bold text-foreground">Tài liệu đã được tạo!</h2>
+        <h2 className="text-2xl font-bold text-foreground">Document Generated!</h2>
         <p className="text-muted-foreground">
-          Xem trước nội dung và tải xuống theo định dạng bạn muốn
+          Preview content and download in your preferred format
         </p>
       </div>
 
       <Card className="p-6 bg-accent/30">
         <div className="flex items-center gap-2 mb-4">
           <FileText className="w-5 h-5 text-primary" />
-          <h3 className="font-semibold text-foreground">Nội dung tài liệu</h3>
+          <h3 className="font-semibold text-foreground">Document Content</h3>
         </div>
         <div className="bg-card rounded-lg p-6 max-h-[400px] overflow-y-auto">
           <pre className="text-sm text-foreground whitespace-pre-wrap font-mono">
@@ -80,7 +80,7 @@ export const ResultsStep = ({ generatedDoc, isGenerating, onReset }: Props) => {
       <Separator />
 
       <div>
-        <h3 className="font-semibold text-foreground mb-4">Tải xuống tài liệu</h3>
+        <h3 className="font-semibold text-foreground mb-4">Download Document</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <Button
             variant="outline"
@@ -130,7 +130,7 @@ export const ResultsStep = ({ generatedDoc, isGenerating, onReset }: Props) => {
         className="w-full gap-2"
       >
         <RefreshCw className="w-5 h-5" />
-        Tạo tài liệu mới
+        Create New Document
       </Button>
     </div>
   );

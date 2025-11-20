@@ -25,11 +25,11 @@ export type ConstraintsData = {
 };
 
 const STEPS = [
-  { id: 1, name: "Thông tin dự án", component: ProjectInfoStep },
-  { id: 2, name: "Tải file", component: FileUploadStep },
-  { id: 3, name: "Ràng buộc", component: ConstraintsStep },
-  { id: 4, name: "Xem trước", component: PreviewStep },
-  { id: 5, name: "Kết quả", component: ResultsStep },
+  { id: 1, name: "Project Info", component: ProjectInfoStep },
+  { id: 2, name: "Upload Files", component: FileUploadStep },
+  { id: 3, name: "Constraints", component: ConstraintsStep },
+  { id: 4, name: "Preview", component: PreviewStep },
+  { id: 5, name: "Results", component: ResultsStep },
 ];
 
 export const DocumentWizard = () => {
@@ -95,7 +95,7 @@ export const DocumentWizard = () => {
             <FileText className="w-8 h-8 text-primary" />
             <h1 className="text-3xl font-bold text-foreground">Document Generator</h1>
           </div>
-          <p className="text-muted-foreground">Tạo tài liệu dự án chuyên nghiệp với AI</p>
+          <p className="text-muted-foreground">Create professional project documentation with AI</p>
         </div>
 
         {/* Progress Steps */}
@@ -167,14 +167,14 @@ export const DocumentWizard = () => {
               className="gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
-              Quay lại
+              Back
             </Button>
             <Button
               onClick={handleNext}
               disabled={currentStep === 1 && !projectData.overview}
               className="gap-2"
             >
-              Tiếp theo
+              Next
               <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
