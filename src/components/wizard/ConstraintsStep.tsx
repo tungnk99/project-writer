@@ -16,65 +16,65 @@ export const ConstraintsStep = ({ constraints, setConstraints }: Props) => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-foreground mb-2">Cài đặt & Ràng buộc</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-2">Settings & Constraints</h2>
         <p className="text-muted-foreground">
-          Tùy chỉnh cách tài liệu của bạn sẽ được tạo
+          Customize how your document will be generated
         </p>
       </div>
 
       <div className="space-y-6">
         <div className="space-y-2">
           <Label htmlFor="language" className="text-base font-semibold text-foreground">
-            Ngôn ngữ viết
+            Language
           </Label>
           <Select value={constraints.language} onValueChange={(value) => handleChange("language", value)}>
             <SelectTrigger id="language" className="w-full">
-              <SelectValue placeholder="Chọn ngôn ngữ" />
+              <SelectValue placeholder="Select language" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="vietnamese">Tiếng Việt</SelectItem>
+              <SelectItem value="vietnamese">Vietnamese</SelectItem>
               <SelectItem value="english">English</SelectItem>
-              <SelectItem value="both">Cả hai / Bilingual</SelectItem>
+              <SelectItem value="both">Bilingual</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="depth" className="text-base font-semibold text-foreground">
-            Độ sâu & Chi tiết
+            Depth & Detail Level
           </Label>
           <Select value={constraints.depth} onValueChange={(value) => handleChange("depth", value)}>
             <SelectTrigger id="depth" className="w-full">
-              <SelectValue placeholder="Chọn mức độ chi tiết" />
+              <SelectValue placeholder="Select detail level" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="brief">Ngắn gọn - Tổng quan chính</SelectItem>
-              <SelectItem value="medium">Trung bình - Cân bằng chi tiết</SelectItem>
-              <SelectItem value="detailed">Chi tiết - Phân tích sâu</SelectItem>
-              <SelectItem value="comprehensive">Toàn diện - Đầy đủ nhất</SelectItem>
+              <SelectItem value="brief">Brief - Main overview</SelectItem>
+              <SelectItem value="medium">Medium - Balanced details</SelectItem>
+              <SelectItem value="detailed">Detailed - In-depth analysis</SelectItem>
+              <SelectItem value="comprehensive">Comprehensive - Most complete</SelectItem>
             </SelectContent>
           </Select>
           <p className="text-sm text-muted-foreground">
-            {constraints.depth === "brief" && "Tài liệu tóm tắt với các điểm chính"}
-            {constraints.depth === "medium" && "Tài liệu chuẩn với thông tin cần thiết"}
-            {constraints.depth === "detailed" && "Tài liệu chuyên sâu với ví dụ và giải thích"}
-            {constraints.depth === "comprehensive" && "Tài liệu đầy đủ nhất với mọi khía cạnh"}
+            {constraints.depth === "brief" && "Summary document with key points"}
+            {constraints.depth === "medium" && "Standard document with essential information"}
+            {constraints.depth === "detailed" && "In-depth document with examples and explanations"}
+            {constraints.depth === "comprehensive" && "Most complete document covering all aspects"}
           </p>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="contentRequirements" className="text-base font-semibold text-foreground">
-            Yêu cầu về nội dung
+            Content Requirements
           </Label>
           <Textarea
             id="contentRequirements"
-            placeholder="Ví dụ: Bao gồm sơ đồ luồng, use case diagrams, phân tích rủi ro..."
+            placeholder="E.g.: Include flowcharts, use case diagrams, risk analysis..."
             value={constraints.contentRequirements}
             onChange={(e) => handleChange("contentRequirements", e.target.value)}
             className="min-h-[120px] resize-none"
           />
           <p className="text-sm text-muted-foreground">
-            Mô tả các yêu cầu đặc biệt về format, nội dung, hoặc cấu trúc tài liệu
+            Describe special requirements for format, content, or document structure
           </p>
         </div>
       </div>

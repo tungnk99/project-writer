@@ -15,18 +15,18 @@ export const ProjectInfoStep = ({ projectData, setProjectData }: Props) => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-foreground mb-2">Thông tin dự án</h2>
-        <p className="text-muted-foreground">Nhập các thông tin chi tiết về dự án của bạn</p>
+        <h2 className="text-2xl font-bold text-foreground mb-2">Project Information</h2>
+        <p className="text-muted-foreground">Enter detailed information about your project</p>
       </div>
 
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="overview" className="text-base font-semibold text-foreground">
-            1. Thông tin tổng quan về dự án <span className="text-destructive">*</span>
+            1. Project Overview <span className="text-destructive">*</span>
           </Label>
           <Textarea
             id="overview"
-            placeholder="Mô tả tổng quan về dự án, mục tiêu, phạm vi..."
+            placeholder="Describe the project overview, objectives, scope..."
             value={projectData.overview}
             onChange={(e) => handleChange("overview", e.target.value)}
             className="min-h-[100px] resize-none"
@@ -36,11 +36,11 @@ export const ProjectInfoStep = ({ projectData, setProjectData }: Props) => {
 
         <div className="space-y-2">
           <Label htmlFor="businessRequirements" className="text-base font-semibold text-foreground">
-            2. Yêu cầu nghiệp vụ (Business Requirements)
+            2. Business Requirements
           </Label>
           <Textarea
             id="businessRequirements"
-            placeholder="Mô tả các yêu cầu nghiệp vụ của dự án..."
+            placeholder="Describe the business requirements of the project..."
             value={projectData.businessRequirements}
             onChange={(e) => handleChange("businessRequirements", e.target.value)}
             className="min-h-[80px] resize-none"
@@ -49,11 +49,11 @@ export const ProjectInfoStep = ({ projectData, setProjectData }: Props) => {
 
         <div className="space-y-2">
           <Label htmlFor="functionalRequirements" className="text-base font-semibold text-foreground">
-            3. Yêu cầu chức năng (Functional Requirements)
+            3. Functional Requirements
           </Label>
           <Textarea
             id="functionalRequirements"
-            placeholder="Mô tả các chức năng cụ thể của hệ thống..."
+            placeholder="Describe specific system functionalities..."
             value={projectData.functionalRequirements}
             onChange={(e) => handleChange("functionalRequirements", e.target.value)}
             className="min-h-[80px] resize-none"
@@ -62,11 +62,11 @@ export const ProjectInfoStep = ({ projectData, setProjectData }: Props) => {
 
         <div className="space-y-2">
           <Label htmlFor="nonFunctionalRequirements" className="text-base font-semibold text-foreground">
-            4. Yêu cầu phi chức năng (Non-Functional Requirements)
+            4. Non-Functional Requirements
           </Label>
           <Textarea
             id="nonFunctionalRequirements"
-            placeholder="Hiệu năng, bảo mật, khả năng mở rộng..."
+            placeholder="Performance, security, scalability..."
             value={projectData.nonFunctionalRequirements}
             onChange={(e) => handleChange("nonFunctionalRequirements", e.target.value)}
             className="min-h-[80px] resize-none"
@@ -75,11 +75,11 @@ export const ProjectInfoStep = ({ projectData, setProjectData }: Props) => {
 
         <div className="space-y-2">
           <Label htmlFor="dataInfo" className="text-base font-semibold text-foreground">
-            5. Thông tin về dữ liệu
+            5. Data Information
           </Label>
           <Textarea
             id="dataInfo"
-            placeholder="Cấu trúc dữ liệu, nguồn dữ liệu, xử lý dữ liệu..."
+            placeholder="Data structure, data sources, data processing..."
             value={projectData.dataInfo}
             onChange={(e) => handleChange("dataInfo", e.target.value)}
             className="min-h-[80px] resize-none"
@@ -88,11 +88,11 @@ export const ProjectInfoStep = ({ projectData, setProjectData }: Props) => {
 
         <div className="space-y-2">
           <Label htmlFor="deploymentInfo" className="text-base font-semibold text-foreground">
-            6. Thông tin triển khai / môi trường
+            6. Deployment & Environment
           </Label>
           <Textarea
             id="deploymentInfo"
-            placeholder="Môi trường phát triển, staging, production..."
+            placeholder="Development environment, staging, production..."
             value={projectData.deploymentInfo}
             onChange={(e) => handleChange("deploymentInfo", e.target.value)}
             className="min-h-[80px] resize-none"
@@ -101,11 +101,11 @@ export const ProjectInfoStep = ({ projectData, setProjectData }: Props) => {
 
         <div className="space-y-2">
           <Label htmlFor="scheduleInfo" className="text-base font-semibold text-foreground">
-            7. Lịch trình & quản lý dự án
+            7. Schedule & Project Management
           </Label>
           <Textarea
             id="scheduleInfo"
-            placeholder="Timeline, milestones, phân công công việc..."
+            placeholder="Timeline, milestones, task assignments..."
             value={projectData.scheduleInfo}
             onChange={(e) => handleChange("scheduleInfo", e.target.value)}
             className="min-h-[80px] resize-none"
