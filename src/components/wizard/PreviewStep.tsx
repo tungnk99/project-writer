@@ -1,0 +1,161 @@
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Sparkles, FileText } from "lucide-react";
+import { ProjectData, ConstraintsData } from "../DocumentWizard";
+import { useToast } from "@/hooks/use-toast";
+
+type Props = {
+  projectData: ProjectData;
+  files: File[];
+  constraints: ConstraintsData;
+  onNext: () => void;
+  setIsGenerating: (val: boolean) => void;
+  setGeneratedDoc: (doc: string) => void;
+};
+
+export const PreviewStep = ({ 
+  projectData, 
+  files, 
+  constraints, 
+  onNext, 
+  setIsGenerating,
+  setGeneratedDoc 
+}: Props) => {
+  const { toast } = useToast();
+
+  const handleGenerate = async () => {
+    setIsGenerating(true);
+    toast({
+      title: "Đang tạo tài liệu...",
+      description: "Vui lòng đợi trong giây lát",
+    });
+
+    // Simulate document generation
+    setTimeout(() => {
+      const mockDoc = generateMockDocument(projectData, constraints);
+      setGeneratedDoc(mockDoc);
+      setIsGenerating(false);
+      toast({
+        title: "Hoàn thành!",
+        description: "Tài liệu đã được tạo thành công",
+      });
+      onNext();
+    }, 3000);
+  };
+
+  const generateMockDocument = (data: ProjectData, constraints: ConstraintsData) => {
+    return `# TÀI LIỆU DỰ ÁN
+
+## 1. TỔNG QUAN DỰ ÁN
+${data.overview}
+
+${data.businessRequirements ? `## 2. YÊU CẦU NGHIỆP VỤ\n${data.businessRequirements}\n` : ''}
+${data.functionalRequirements ? `## 3. YÊU CẦU CHỨC NĂNG\n${data.functionalRequirements}\n` : ''}
+${data.nonFunctionalRequirements ? `## 4. YÊU CẦU PHI CHỨC NĂNG\n${data.nonFunctionalRequirements}\n` : ''}
+${data.dataInfo ? `## 5. THÔNG TIN DỮ LIỆU\n${data.dataInfo}\n` : ''}
+${data.deploymentInfo ? `## 6. TRIỂN KHAI & MÔI TRƯỜNG\n${data.deploymentInfo}\n` : ''}
+${data.scheduleInfo ? `## 7. LỊCH TRÌNH & QUẢN LÝ\n${data.scheduleInfo}\n` : ''}
+
+---
+*Tài liệu được tạo tự động bởi Document Generator*
+*Độ chi tiết: ${constraints.depth} | Ngôn ngữ: ${constraints.language}*`;
+  };
+
+  const languageLabel = {
+    vietnamese: "Tiếng Việt",
+    english: "English",
+    both: "Cả hai"
+  };
+
+  const depthLabel = {
+    brief: "Ngắn gọn",
+    medium: "Trung bình",
+    detailed: "Chi tiết",
+    comprehensive: "Toàn diện"
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="text-center space-y-2">
+        <h2 className="text-2xl font-bold text-foreground">Xem trước & Xác nhận</h2>
+        <p className="text-muted-foreground">
+          Kiểm tra lại thông tin trước khi tạo tài liệu
+        </p>
+      </div>
+
+      <Card className="p-6 bg-accent/50 space-y-4">
+        <div>
+          <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+            <FileText className="w-5 h-5 text-primary" />
+            Thông tin dự án
+          </h3>
+          <div className="space-y-2 text-sm">
+            <div>
+              <span className="font-medium text-foreground">Tổng quan:</span>
+              <p className="text-muted-foreground mt-1">{projectData.overview}</p>
+            </div>
+            {projectData.businessRequirements && (
+              <div>
+                <span className="font-medium text-foreground">Yêu cầu nghiệp vụ:</span>
+                <p className="text-muted-foreground mt-1">{projectData.businessRequirements}</p>
+              </div>
+            )}
+            {projectData.functionalRequirements && (
+              <div>
+                <span className="font-medium text-foreground">Yêu cầu chức năng:</span>
+                <p className="text-muted-foreground mt-1">{projectData.functionalRequirements}</p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <Separator />
+
+        <div>
+          <h3 className="font-semibold text-foreground mb-3">File đính kèm</h3>
+          {files.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {files.map((file, index) => (
+                <Badge key={index} variant="secondary" className="px-3 py-1">
+                  {file.name}
+                </Badge>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground">Không có file đính kèm</p>
+          )}
+        </div>
+
+        <Separator />
+
+        <div>
+          <h3 className="font-semibold text-foreground mb-3">Cài đặt</h3>
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="outline" className="px-3 py-1">
+              Ngôn ngữ: {languageLabel[constraints.language as keyof typeof languageLabel]}
+            </Badge>
+            <Badge variant="outline" className="px-3 py-1">
+              Độ chi tiết: {depthLabel[constraints.depth as keyof typeof depthLabel]}
+            </Badge>
+          </div>
+          {constraints.contentRequirements && (
+            <p className="text-sm text-muted-foreground mt-2">
+              Yêu cầu: {constraints.contentRequirements}
+            </p>
+          )}
+        </div>
+      </Card>
+
+      <Button
+        onClick={handleGenerate}
+        size="lg"
+        className="w-full gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70"
+      >
+        <Sparkles className="w-5 h-5" />
+        Tạo tài liệu
+      </Button>
+    </div>
+  );
+};
