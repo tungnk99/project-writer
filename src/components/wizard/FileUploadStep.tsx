@@ -61,7 +61,16 @@ export const FileUploadStep = ({ files, setFiles }: Props) => {
       </div>
 
       <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary transition-colors">
-...
+        <label htmlFor="file-upload" className="cursor-pointer flex flex-col items-center">
+          <input
+            id="file-upload"
+            type="file"
+            multiple
+            accept=".pdf,.doc,.docx,.txt,.md,.xlsx,.xls"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+          <Upload className="w-12 h-12 text-primary mb-4" />
           <div>
             <p className="text-lg font-semibold text-foreground mb-1">
               Click to select files or drag and drop here
