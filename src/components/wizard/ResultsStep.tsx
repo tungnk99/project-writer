@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { FileDown, FileText, RefreshCw, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { DocumentEditor } from "@/components/DocumentEditor";
+import { RichDocumentViewer } from "@/components/RichDocumentViewer";
 
 type Props = {
   generatedDoc: string;
@@ -68,19 +68,21 @@ export const ResultsStep = ({ generatedDoc, isGenerating, onReset }: Props) => {
         </p>
       </div>
 
-      <Card className="p-6 bg-accent/30">
-        <div className="flex items-center gap-2 mb-4">
-          <FileText className="w-5 h-5 text-primary" />
-          <h3 className="font-semibold text-foreground">Document Content</h3>
-          <p className="text-sm text-muted-foreground ml-auto">
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <FileText className="w-5 h-5 text-primary" />
+            <h3 className="font-semibold text-foreground">Document Content</h3>
+          </div>
+          <p className="text-sm text-muted-foreground">
             Select text to edit with AI
           </p>
         </div>
-        <DocumentEditor 
+        <RichDocumentViewer 
           content={documentContent}
           onContentChange={setDocumentContent}
         />
-      </Card>
+      </div>
 
       <Separator />
 
