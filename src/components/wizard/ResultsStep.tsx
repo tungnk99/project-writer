@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { FileDown, FileText, RefreshCw, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { DocumentEditor } from "@/components/DocumentEditor";
 
 type Props = {
   generatedDoc: string;
@@ -12,6 +14,7 @@ type Props = {
 
 export const ResultsStep = ({ generatedDoc, isGenerating, onReset }: Props) => {
   const { toast } = useToast();
+  const [documentContent, setDocumentContent] = useState(generatedDoc);
 
   const handleDownload = (format: string) => {
     toast({
@@ -20,7 +23,7 @@ export const ResultsStep = ({ generatedDoc, isGenerating, onReset }: Props) => {
     });
 
     // Create blob and download
-    const blob = new Blob([generatedDoc], { type: "text/plain" });
+    const blob = new Blob([documentContent], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -69,12 +72,14 @@ export const ResultsStep = ({ generatedDoc, isGenerating, onReset }: Props) => {
         <div className="flex items-center gap-2 mb-4">
           <FileText className="w-5 h-5 text-primary" />
           <h3 className="font-semibold text-foreground">Document Content</h3>
+          <p className="text-sm text-muted-foreground ml-auto">
+            Select text to edit with AI
+          </p>
         </div>
-        <div className="bg-card rounded-lg p-6 max-h-[400px] overflow-y-auto">
-          <pre className="text-sm text-foreground whitespace-pre-wrap font-mono">
-            {generatedDoc}
-          </pre>
-        </div>
+        <DocumentEditor 
+          content={documentContent}
+          onContentChange={setDocumentContent}
+        />
       </Card>
 
       <Separator />
